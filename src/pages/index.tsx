@@ -6,6 +6,7 @@ import Link from 'next/link'
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+  const envVar = process.env.URL_BASE
   return (
     <>
       <Head>
@@ -16,7 +17,7 @@ export default function Home() {
       </Head>
       <main className={`${styles.main} ${inter.className}`}>
         <div>
-          <h1>Clase 6: API Routes</h1>
+          <h1>Clase 6: API Routes - Env var: {envVar}</h1>
           <nav>
             <ul>
               <li>
