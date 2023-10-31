@@ -2,10 +2,22 @@ import Head from 'next/head'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+  const [pokemonList, setPokemonList] = useState([])
+
+  useEffect(() => {
+    const fetchPokemonList = async () => {
+      const response = await fetch('api/pokemon')
+      const results = await response.json()
+      setPokemonList(results)
+    }
+    fetchPokemonList()
+  }, [])
+
   return (
     <>
       <Head>
@@ -16,7 +28,7 @@ export default function Home() {
       </Head>
       <main className={`${styles.main} ${inter.className}`}>
         <div>
-          <h1>Clase 6: API Routes</h1>
+          <h1>Clase 6: API Routes / Pokemon</h1>
           <nav>
             <ul>
               <li>
@@ -36,6 +48,20 @@ export default function Home() {
               </li>
             </ul>
           </nav>
+          <div>
+            <ul>
+              {pokemonList.map((pokemon: any) => {
+                return (
+                  <li key={pokemon.id}>
+                    <Link href={`/pokemon/${pokemon.id}`}>
+                      {pokemon.name}
+                    </Link>
+                  </li>
+                )
+              }
+              )}
+            </ul>
+          </div>
         </div>
       </main>
     </>
