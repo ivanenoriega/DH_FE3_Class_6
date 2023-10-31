@@ -25,7 +25,7 @@ export default function Home({ pokemon }: { pokemon: Pokemon }) {
       </Head>
       <main className={`${styles.main} ${inter.className}`}>
         <h1>Pokemon: {pokemon.name} ({pokemon.id})</h1>
-        <button onClick={getRandomPokemon}>Get a random Pokemon</button>
+        <button onClick={getRandomPokemon}>Get a random Pokemon (not working)</button>
         <Image src={pokemon.image} alt={pokemon.name} width={200} height={200} />
       </main>
     </>
